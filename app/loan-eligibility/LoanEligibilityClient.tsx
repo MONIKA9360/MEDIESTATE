@@ -94,12 +94,12 @@ export default function LoanEligibilityClient() {
               >
                 Check Eligibility
               </button>
-              <button 
-                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+              <a 
+                href="tel:+919003252500"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border-2 border-gray-200 hover:border-emerald-500 hover:text-emerald-600 hover:scale-105 transition-all duration-300 shadow-lg"
               >
                 Call Now
-              </button>
+              </a>
             </div>
           </motion.div>
         </div>

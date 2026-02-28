@@ -6,6 +6,7 @@ export interface Property {
   price: string
   type: 'Land' | 'Villa' | 'Estate'
   area: string
+  image: string
   description: string
   features: string[]
   details: {
@@ -29,6 +30,7 @@ export const properties: Property[] = [
     price: '₹12 Crore',
     type: 'Land',
     area: '2.5 Acres',
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80',
     description: 'Prime medical-use land in Chennai\'s fastest-growing healthcare corridor. Perfect for hospital, diagnostic center, or wellness facility development.',
     features: ['Medical Zoning', 'Corner Plot', 'Wide Road Access', 'Clear Title'],
     details: {
@@ -62,6 +64,7 @@ export const properties: Property[] = [
     price: '₹8.5 Crore',
     type: 'Villa',
     area: '8,500 sq ft',
+    image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80',
     description: 'Exquisite wellness villa designed for holistic healthcare practice. Features meditation spaces, therapy rooms, and healing gardens.',
     features: ['5 Therapy Rooms', 'Meditation Garden', 'Parking for 15', 'Modern Architecture'],
     details: {
@@ -97,6 +100,8 @@ export const properties: Property[] = [
     price: '₹25 Crore',
     type: 'Estate',
     area: '5 Acres',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
+    area: '5 Acres',
     description: 'Premium healthcare commercial estate ideal for multi-specialty hospital, medical college, or integrated wellness center development.',
     features: ['5 Acres', 'Medical Zoning', 'Metro Connectivity', 'High FSI'],
     details: {
@@ -131,6 +136,7 @@ export const properties: Property[] = [
     price: '₹18 Crore',
     type: 'Land',
     area: '3 Acres',
+    image: 'https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80',
     description: 'Strategic medical land in Hyderabad\'s IT corridor. Ideal for corporate wellness center, diagnostic facility, or specialty hospital.',
     features: ['IT Corridor', 'High Visibility', 'Corner Plot', 'Medical Zoning'],
     details: {
@@ -164,6 +170,7 @@ export const properties: Property[] = [
     price: '₹15 Crore',
     type: 'Villa',
     area: '12,000 sq ft',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80',
     description: 'Exclusive beachfront wellness villa perfect for luxury rehabilitation center, yoga retreat, or holistic healing facility.',
     features: ['Beachfront', 'Sea View', '10 Treatment Rooms', 'Infinity Pool'],
     details: {
@@ -199,6 +206,7 @@ export const properties: Property[] = [
     price: '₹10 Crore',
     type: 'Land',
     area: '1.5 Acres',
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&q=80',
     description: 'Premium medical land near IT parks and residential complexes. Perfect for polyclinic, diagnostic center, or wellness facility.',
     features: ['IT Park Adjacent', 'High Footfall', 'Medical Zoning', 'Clear Title'],
     details: {

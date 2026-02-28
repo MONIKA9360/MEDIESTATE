@@ -14,26 +14,17 @@ export default function PropertyCard({ property }: { property: Property }) {
       className="group h-full"
     >
       <div className="h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col">
-        {/* Image Section with Gradient Background */}
-        <div className="relative h-56 bg-gradient-to-br from-blue-50 via-emerald-50 to-purple-50 overflow-hidden">
-          {/* Animated Background Blob */}
-          <div className="absolute inset-0">
-            <div className="absolute top-0 -left-4 w-32 h-32 bg-emerald-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-            <div className="absolute bottom-0 -right-4 w-32 h-32 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
-          </div>
+        {/* Image Section */}
+        <div className="relative h-64 overflow-hidden">
+          {/* Property Image */}
+          <img 
+            src={property.image} 
+            alt={property.title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          />
           
-          {/* Property Icon */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <motion.div 
-              className="text-7xl opacity-40 group-hover:opacity-60 group-hover:scale-110 transition-all duration-500"
-              whileHover={{ rotate: [0, -5, 5, 0] }}
-              transition={{ duration: 0.5 }}
-            >
-              {property.type === 'Land' && '🏞️'}
-              {property.type === 'Villa' && '🏡'}
-              {property.type === 'Estate' && '🏢'}
-            </motion.div>
-          </div>
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
           
           {/* Property Type Badge */}
           <div className="absolute top-4 right-4">
@@ -44,7 +35,7 @@ export default function PropertyCard({ property }: { property: Property }) {
           
           {/* Location Badge */}
           <div className="absolute bottom-4 left-4 right-4">
-            <div className="bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-lg border border-gray-200/50 group-hover:bg-white transition-all duration-300">
+            <div className="bg-white/95 backdrop-blur-md px-4 py-2.5 rounded-xl shadow-lg border border-gray-200/50">
               <p className="text-gray-800 text-sm flex items-center font-semibold">
                 <svg className="w-4 h-4 mr-2 text-emerald-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
