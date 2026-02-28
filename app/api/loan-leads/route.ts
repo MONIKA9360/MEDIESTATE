@@ -43,3 +43,25 @@ export async function GET() {
     return NextResponse.json({ error: 'Failed to fetch loan leads' }, { status: 500 })
   }
 }
+
+export async function PATCH(request: NextRequest) {
+  try {
+    const { searchParams } = new URL(request.url)
+    const id = searchParams.get('id')
+    const body = await request.json()
+
+    if (!id) {
+      return NextResponse.json({ error: 'ID required' }, { status: 400 })
+    }
+
+    const loanLead = await prisma.loanLead.update({
+      where: { id },
+      data: body,
+    })
+
+    return NextResponse.json({ success: true, loanLead })
+  } catch (error) {
+    console.error('Error updating loan lead:', error)
+    return NextResponse.json({ error: 'Failed to update loan lead' }, { status: 500 })
+  }
+}
