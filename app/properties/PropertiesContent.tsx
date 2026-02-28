@@ -43,27 +43,6 @@ export default function PropertiesContent() {
           >
             Browse our complete collection of premium medical properties across India's top healthcare corridors
           </motion.p>
-          
-          {/* Stats Bar */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-12 mt-10"
-          >
-            {[
-              { label: 'Properties', value: '6' },
-              { label: 'Cities', value: '6+' },
-              { label: 'Total Area', value: '15+ Acres' },
-            ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-600 font-semibold mt-2">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
 
         {/* Properties Grid */}
