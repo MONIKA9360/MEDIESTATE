@@ -5,12 +5,12 @@ import { sendAdminNotification, sendUserConfirmation } from '@/lib/email'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, email, phone, message, propertyId } = body
+    const { name, email, phone, subject, message, propertyId } = body
 
     console.log('📝 Creating lead for:', email)
 
     const lead = await prisma.lead.create({
-      data: { name, email, phone, message, propertyId },
+      data: { name, email, phone, subject: subject || '', message, propertyId },
     })
 
     console.log('✅ Lead created successfully:', lead.id)
@@ -38,7 +38,7 @@ export async function GET() {
     const leads = await prisma.lead.findMany({
       orderBy: { createdAt: 'desc' },
     })
-    return NextResponse.json(leads)
+    return NextResponse.json({ leads })
   } catch (error) {
     console.error('Error fetching leads:', error)
     return NextResponse.json({ error: 'Failed to fetch leads' }, { status: 500 })

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 export default function ContactForm({ propertyId }: { propertyId?: string }) {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' })
+  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -20,7 +20,7 @@ export default function ContactForm({ propertyId }: { propertyId?: string }) {
 
       if (res.ok) {
         setStatus('success')
-        setFormData({ name: '', email: '', phone: '', message: '' })
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
         setTimeout(() => setStatus('idle'), 5000)
       } else {
         setStatus('error')
@@ -70,6 +70,18 @@ export default function ContactForm({ propertyId }: { propertyId?: string }) {
             required
             value={formData.phone}
             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+            className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
+          />
+        </div>
+        
+        <div>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">Subject</label>
+          <input
+            type="text"
+            placeholder="Property Inquiry"
+            required
+            value={formData.subject}
+            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
             className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition text-gray-900"
           />
         </div>

@@ -37,7 +37,7 @@ export async function GET() {
     const loanLeads = await prisma.loanLead.findMany({
       orderBy: { createdAt: 'desc' },
     })
-    return NextResponse.json(loanLeads)
+    return NextResponse.json({ leads: loanLeads })
   } catch (error) {
     console.error('Error fetching loan leads:', error)
     return NextResponse.json({ error: 'Failed to fetch loan leads' }, { status: 500 })

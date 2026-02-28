@@ -12,6 +12,7 @@ model Lead {
   name       String
   email      String
   phone      String
+  subject    String   @default("")
   message    String
   propertyId String?
   createdAt  DateTime @default(now())
