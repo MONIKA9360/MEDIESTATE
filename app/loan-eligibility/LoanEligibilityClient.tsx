@@ -80,7 +80,7 @@ export default function LoanEligibilityClient() {
             </span>
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
               Loan Eligibility for<br />
-              <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+              <span className="text-emerald-600">
                 Medical Professionals
               </span>
             </h1>
@@ -90,7 +90,7 @@ export default function LoanEligibilityClient() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="px-8 py-4 bg-gray-900 text-white font-semibold rounded-full shadow-lg hover:bg-gray-800 hover:scale-105 transition-all duration-300"
               >
                 Check Eligibility
               </button>
@@ -350,8 +350,7 @@ export default function LoanEligibilityClient() {
       </section>
 
       {/* Final CTA */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-blue-600"></div>
+      <section className="relative py-20 overflow-hidden bg-gray-900">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">Ready to Apply for Your Loan?</h2>
           <p className="text-xl mb-8 opacity-90">Get in touch with our loan experts today</p>
@@ -440,7 +439,7 @@ export default function LoanEligibilityClient() {
               <button
                 type="submit"
                 disabled={status === 'loading'}
-                className="w-full px-6 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 disabled:opacity-50"
+                className="w-full px-6 py-4 bg-gray-900 text-white rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 disabled:opacity-50"
               >
                 {status === 'loading' ? 'Sending...' : 'Submit Application'}
               </button>
