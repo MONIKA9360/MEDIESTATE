@@ -51,7 +51,10 @@ export default function LoanEligibilityClient() {
             <div className="flex items-center gap-6">
               <a href="mailto:info@mediestate.in" className="hover:text-emerald-400 transition">info@mediestate.in</a>
               <a href="tel:+919003252500" className="hover:text-emerald-400 transition">+91 9003252500</a>
-              <button className="px-4 py-1.5 bg-emerald-600 rounded-full hover:bg-emerald-700 transition">
+              <button 
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-4 py-1.5 bg-emerald-600 rounded-full hover:bg-emerald-700 transition"
+              >
                 Send Enquiry
               </button>
             </div>
@@ -85,12 +88,18 @@ export default function LoanEligibilityClient() {
               Specialized loan products designed for doctors with competitive interest rates and flexible terms
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+              <button 
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                className="px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+              >
                 Check Eligibility
               </button>
-              <a href="tel:+919003252500" className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border-2 border-gray-200 hover:border-emerald-500 hover:text-emerald-600 hover:scale-105 transition-all duration-300 shadow-lg">
+              <button 
+                onClick={() => document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+                className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border-2 border-gray-200 hover:border-emerald-500 hover:text-emerald-600 hover:scale-105 transition-all duration-300 shadow-lg"
+              >
                 Call Now
-              </a>
+              </button>
             </div>
           </motion.div>
         </div>
