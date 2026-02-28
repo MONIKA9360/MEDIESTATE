@@ -219,118 +219,105 @@ export default function AdminPage() {
 
   if (!isAuthenticated) {
     return (
-      <div className="min-h-screen bg-white relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-0 -left-4 w-96 h-96 bg-gradient-to-br from-emerald-200 via-blue-200 to-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
-          <div className="absolute top-0 -right-4 w-96 h-96 bg-gradient-to-br from-blue-200 via-purple-200 to-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
-          <div className="absolute -bottom-8 left-20 w-96 h-96 bg-gradient-to-br from-purple-200 via-pink-200 to-emerald-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-4000"></div>
-        </div>
+      <div className="min-h-screen bg-gray-50 relative overflow-hidden flex items-center justify-center p-4">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="w-full max-w-md"
+        >
+          <div className="bg-white rounded-2xl shadow-xl p-10 border border-gray-200">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="text-center mb-10"
+            >
+              <div className="w-20 h-20 bg-gray-900 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                </svg>
+              </div>
+              <h1 className="text-4xl font-bold text-gray-900 mb-3">
+                Admin Portal
+              </h1>
+              <p className="text-gray-600 text-lg">Secure access to your dashboard</p>
+            </motion.div>
 
-        <div className="relative z-10 min-h-screen flex items-center justify-center p-4">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="w-full max-w-md"
-          >
-            <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl p-10 border border-gray-200/50">
+            <form onSubmit={handleLogin} className="space-y-6">
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 0.6, type: 'spring', stiffness: 200 }}
-                className="text-center mb-10"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.5 }}
               >
-                <div className="relative inline-block mb-6">
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl blur-lg opacity-50"></div>
-                  <div className="relative w-20 h-20 bg-gradient-to-br from-emerald-600 via-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
-                    <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
+                <input
+                  type="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300 text-gray-900 placeholder-gray-400"
+                  placeholder="admin@example.com"
+                />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
+                <label className="block text-sm font-bold text-gray-700 mb-2">Password</label>
+                <input
+                  type="password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent transition-all duration-300 text-gray-900 placeholder-gray-400"
+                  placeholder="••••••••"
+                />
+              </motion.div>
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="p-4 bg-red-50 border-2 border-red-200 rounded-xl"
+                >
+                  <div className="flex items-center">
+                    <svg className="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
                     </svg>
+                    <p className="text-red-700 font-semibold text-sm">{error}</p>
                   </div>
-                </div>
-                <h1 className="text-4xl font-bold bg-gradient-to-r from-gray-900 via-emerald-800 to-blue-900 bg-clip-text text-transparent mb-3">
-                  Admin Portal
-                </h1>
-                <p className="text-gray-600 text-lg">Secure access to your dashboard</p>
-              </motion.div>
-
-              <form onSubmit={handleLogin} className="space-y-6">
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Email Address</label>
-                  <input
-                    type="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 text-gray-900 placeholder-gray-400"
-                    placeholder="admin@example.com"
-                  />
                 </motion.div>
+              )}
 
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                  <label className="block text-sm font-bold text-gray-700 mb-2">Password</label>
-                  <input
-                    type="password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className="w-full px-5 py-4 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-all duration-300 text-gray-900 placeholder-gray-400"
-                    placeholder="••••••••"
-                  />
-                </motion.div>
-
-                {error && (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    className="p-4 bg-gradient-to-r from-red-50 to-red-100 border-2 border-red-200 rounded-xl"
-                  >
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-red-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
-                      </svg>
-                      <p className="text-red-700 font-semibold text-sm">{error}</p>
-                    </div>
-                  </motion.div>
-                )}
-
-                <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 0.5 }}
-                  whileHover={{ scale: 1.02, boxShadow: "0 20px 40px rgba(0,0,0,0.15)" }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={loading}
-                  className="relative w-full px-6 py-4 bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 text-white rounded-xl font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 disabled:opacity-50 overflow-hidden group"
-                >
-                  <span className="relative z-10">{loading ? 'Signing in...' : 'Sign In'}</span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 via-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </motion.button>
-              </form>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.5 }}
-                className="mt-8 text-center"
+              <motion.button
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.5 }}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                type="submit"
+                disabled={loading}
+                className="w-full px-6 py-4 bg-gray-900 text-white rounded-xl font-bold text-lg shadow-lg hover:bg-gray-800 transition-all duration-300 disabled:opacity-50"
               >
-                <p className="text-sm text-gray-500">
-                  Secured by <span className="font-bold text-emerald-600">Medi Estate</span>
-                </p>
-              </motion.div>
-            </div>
-          </motion.div>
-        </div>
+                {loading ? 'Signing in...' : 'Sign In'}
+              </motion.button>
+            </form>
+
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 0.5 }}
+              className="mt-8 text-center"
+            >
+              <p className="text-sm text-gray-500">
+                Secured by <span className="font-bold text-gray-900">Medi Estate</span>
+              </p>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     )
   }
@@ -341,7 +328,7 @@ export default function AdminPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-50">
       {/* Premium Header */}
-      <div className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-lg backdrop-blur-xl bg-white/90">
+      <div className="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5">
           <div className="flex items-center justify-between">
             <motion.div 
@@ -349,16 +336,13 @@ export default function AdminPage() {
               animate={{ opacity: 1, x: 0 }}
               className="flex items-center gap-4"
             >
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-xl blur-md opacity-50"></div>
-                <div className="relative w-14 h-14 bg-gradient-to-br from-emerald-600 via-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-xl">
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                  </svg>
-                </div>
+              <div className="w-14 h-14 bg-gray-900 rounded-xl flex items-center justify-center shadow-md">
+                <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
               </div>
               <div>
-                <h1 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-emerald-800 to-blue-900 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-bold text-gray-900">
                   Admin Dashboard
                 </h1>
                 <p className="text-sm text-gray-600 font-medium">Medi Estate CRM System</p>
@@ -370,7 +354,7 @@ export default function AdminPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={handleLogout}
-              className="px-6 py-3 bg-gradient-to-r from-gray-800 to-gray-900 text-white rounded-xl hover:from-gray-900 hover:to-black transition-all duration-300 font-bold shadow-lg"
+              className="px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 font-bold shadow-md"
             >
               Logout
             </motion.button>
@@ -382,31 +366,30 @@ export default function AdminPage() {
         {/* Premium Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {[
-            { label: 'Total Contact Leads', value: stats.totalContact, icon: '👥', gradient: 'from-emerald-500 to-teal-500', bg: 'from-emerald-50 to-teal-50' },
-            { label: 'Total Loan Leads', value: stats.totalLoan, icon: '💰', gradient: 'from-blue-500 to-indigo-500', bg: 'from-blue-50 to-indigo-50' },
-            { label: 'Pending Loans', value: stats.pendingLoan, icon: '⏳', gradient: 'from-yellow-500 to-orange-500', bg: 'from-yellow-50 to-orange-50' },
-            { label: 'Approved Loans', value: stats.approvedLoan, icon: '✅', gradient: 'from-green-500 to-emerald-500', bg: 'from-green-50 to-emerald-50' },
+            { label: 'Total Contact Leads', value: stats.totalContact, icon: '👥', color: 'emerald', iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600', textColor: 'text-emerald-600', border: 'border-emerald-100' },
+            { label: 'Total Loan Leads', value: stats.totalLoan, icon: '💰', color: 'blue', iconBg: 'bg-blue-50', iconColor: 'text-blue-600', textColor: 'text-blue-600', border: 'border-blue-100' },
+            { label: 'Pending Loans', value: stats.pendingLoan, icon: '⏳', color: 'yellow', iconBg: 'bg-yellow-50', iconColor: 'text-yellow-600', textColor: 'text-yellow-600', border: 'border-yellow-100' },
+            { label: 'Approved Loans', value: stats.approvedLoan, icon: '✅', color: 'green', iconBg: 'bg-green-50', iconColor: 'text-green-600', textColor: 'text-green-600', border: 'border-green-100' },
           ].map((stat, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.1)" }}
-              className={`relative bg-gradient-to-br ${stat.bg} rounded-2xl p-6 border border-gray-200 shadow-lg overflow-hidden group cursor-pointer`}
+              whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
+              className={`relative bg-white rounded-2xl p-6 border-2 ${stat.border} shadow-md overflow-hidden group cursor-pointer transition-all duration-300`}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-white/50 to-transparent rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500"></div>
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-4">
-                  <div className={`w-14 h-14 bg-gradient-to-br ${stat.gradient} rounded-xl flex items-center justify-center text-2xl shadow-lg`}>
+                  <div className={`w-14 h-14 ${stat.iconBg} rounded-xl flex items-center justify-center text-2xl shadow-sm`}>
                     {stat.icon}
                   </div>
-                  <div className={`px-3 py-1 bg-white rounded-full text-xs font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent border border-gray-200`}>
+                  <div className={`px-3 py-1 bg-gray-50 rounded-full text-xs font-bold ${stat.textColor} border border-gray-200`}>
                     Live
                   </div>
                 </div>
                 <p className="text-sm text-gray-600 font-semibold mb-2">{stat.label}</p>
-                <p className={`text-4xl font-bold bg-gradient-to-r ${stat.gradient} bg-clip-text text-transparent`}>
+                <p className={`text-4xl font-bold ${stat.textColor}`}>
                   {stat.value}
                 </p>
               </div>
@@ -422,19 +405,21 @@ export default function AdminPage() {
           className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-10"
         >
           {[
-            { label: 'Pending Review', value: stats.pendingLoan, gradient: 'from-yellow-500 to-amber-500', icon: '⏰' },
-            { label: 'Under Review', value: stats.underReviewLoan, gradient: 'from-orange-500 to-red-500', icon: '🔍' },
-            { label: 'Approved', value: stats.approvedLoan, gradient: 'from-green-500 to-emerald-500', icon: '✓' },
-            { label: 'Rejected', value: stats.rejectedLoan, gradient: 'from-red-500 to-pink-500', icon: '✗' },
+            { label: 'Pending Review', value: stats.pendingLoan, bg: 'bg-white', border: 'border-yellow-200', text: 'text-yellow-600', iconBg: 'bg-yellow-50', icon: '⏰' },
+            { label: 'Under Review', value: stats.underReviewLoan, bg: 'bg-white', border: 'border-orange-200', text: 'text-orange-600', iconBg: 'bg-orange-50', icon: '🔍' },
+            { label: 'Approved', value: stats.approvedLoan, bg: 'bg-white', border: 'border-green-200', text: 'text-green-600', iconBg: 'bg-green-50', icon: '✓' },
+            { label: 'Rejected', value: stats.rejectedLoan, bg: 'bg-white', border: 'border-red-200', text: 'text-red-600', iconBg: 'bg-red-50', icon: '✗' },
           ].map((item, index) => (
             <motion.div
               key={index}
-              whileHover={{ scale: 1.05 }}
-              className={`bg-gradient-to-br ${item.gradient} rounded-2xl p-6 text-white shadow-xl relative overflow-hidden`}
+              whileHover={{ y: -5, boxShadow: "0 10px 30px rgba(0,0,0,0.1)" }}
+              className={`${item.bg} rounded-2xl p-6 border-2 ${item.border} shadow-md relative overflow-hidden transition-all duration-300`}
             >
-              <div className="absolute top-0 right-0 text-6xl opacity-10">{item.icon}</div>
-              <p className="text-sm opacity-90 font-semibold mb-2">{item.label}</p>
-              <p className="text-4xl font-bold">{item.value}</p>
+              <div className={`w-12 h-12 ${item.iconBg} rounded-xl flex items-center justify-center text-2xl mb-4`}>
+                {item.icon}
+              </div>
+              <p className="text-sm text-gray-600 font-semibold mb-2">{item.label}</p>
+              <p className={`text-4xl font-bold ${item.text}`}>{item.value}</p>
             </motion.div>
           ))}
         </motion.div>
@@ -514,7 +499,7 @@ export default function AdminPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => exportToCSV(activeTab === 'contact' ? filteredContactLeads : filteredLoanLeads, `${activeTab}-leads-${new Date().toISOString().split('T')[0]}.csv`)}
-              className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 font-bold shadow-lg flex items-center"
+              className="px-6 py-3 bg-gray-900 text-white rounded-xl hover:bg-gray-800 transition-all duration-300 font-bold shadow-md flex items-center"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -525,7 +510,7 @@ export default function AdminPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => { setSearchTerm(''); setFilterStatus('ALL'); setFilterPriority('ALL'); }}
-              className="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-xl hover:from-gray-700 hover:to-gray-800 transition-all duration-300 font-bold shadow-lg flex items-center"
+              className="px-6 py-3 bg-gray-100 text-gray-700 rounded-xl hover:bg-gray-200 transition-all duration-300 font-bold shadow-md flex items-center border border-gray-300"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -541,7 +526,7 @@ export default function AdminPage() {
           transition={{ delay: 0.6 }}
           className="bg-white rounded-2xl shadow-xl border border-gray-200 overflow-hidden"
         >
-          <div className="border-b border-gray-200 bg-gradient-to-r from-gray-50 to-white">
+          <div className="border-b border-gray-200 bg-gray-50">
             <div className="flex">
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -549,17 +534,10 @@ export default function AdminPage() {
                 onClick={() => setActiveTab('contact')}
                 className={`flex-1 px-8 py-5 font-bold text-lg transition-all duration-300 relative ${
                   activeTab === 'contact'
-                    ? 'text-white'
+                    ? 'text-white bg-gray-900'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {activeTab === 'contact' && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 rounded-t-2xl"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
                 <span className="relative z-10 flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -573,17 +551,10 @@ export default function AdminPage() {
                 onClick={() => setActiveTab('loan')}
                 className={`flex-1 px-8 py-5 font-bold text-lg transition-all duration-300 relative ${
                   activeTab === 'loan'
-                    ? 'text-white'
+                    ? 'text-white bg-gray-900'
                     : 'text-gray-600 hover:bg-gray-100'
                 }`}
               >
-                {activeTab === 'loan' && (
-                  <motion.div
-                    layoutId="activeTab"
-                    className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 rounded-t-2xl"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
                 <span className="relative z-10 flex items-center justify-center">
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -678,7 +649,7 @@ export default function AdminPage() {
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
                                   onClick={() => { setSelectedLead(lead); setShowModal(true); }}
-                                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all duration-300"
+                                  className="px-4 py-2 bg-gray-900 text-white rounded-lg font-bold text-sm shadow-md hover:bg-gray-800 transition-all duration-300"
                                 >
                                   View
                                 </motion.button>
@@ -774,7 +745,7 @@ export default function AdminPage() {
                                   whileHover={{ scale: 1.1 }}
                                   whileTap={{ scale: 0.9 }}
                                   onClick={() => { setSelectedLead(lead); setShowModal(true); }}
-                                  className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-blue-600 text-white rounded-lg font-bold text-sm shadow-md hover:shadow-lg transition-all duration-300"
+                                  className="px-4 py-2 bg-gray-900 text-white rounded-lg font-bold text-sm shadow-md hover:bg-gray-800 transition-all duration-300"
                                 >
                                   View
                                 </motion.button>
@@ -810,7 +781,7 @@ export default function AdminPage() {
               onClick={(e) => e.stopPropagation()}
               className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto"
             >
-              <div className="sticky top-0 bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 p-8 rounded-t-3xl">
+              <div className="sticky top-0 bg-gray-900 p-8 rounded-t-3xl">
                 <div className="flex items-center justify-between">
                   <div>
                     <h2 className="text-3xl font-bold text-white mb-2">Lead Details</h2>
@@ -879,7 +850,7 @@ export default function AdminPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href={`mailto:${selectedLead.email}`}
-                  className="flex-1 px-6 py-4 bg-gradient-to-r from-emerald-600 to-teal-600 text-white rounded-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 text-center font-bold shadow-lg flex items-center justify-center"
+                  className="flex-1 px-6 py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 text-center font-bold shadow-lg flex items-center justify-center"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -890,7 +861,7 @@ export default function AdminPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href={`tel:${selectedLead.phone}`}
-                  className="flex-1 px-6 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-xl hover:from-blue-700 hover:to-indigo-700 transition-all duration-300 text-center font-bold shadow-lg flex items-center justify-center"
+                  className="flex-1 px-6 py-4 bg-blue-600 text-white rounded-xl hover:bg-blue-700 transition-all duration-300 text-center font-bold shadow-lg flex items-center justify-center"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
