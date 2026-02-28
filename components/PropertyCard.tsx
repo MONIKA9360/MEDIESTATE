@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Property } from '@/lib/properties'
 
 export default function PropertyCard({ property }: { property: Property }) {
@@ -15,12 +16,15 @@ export default function PropertyCard({ property }: { property: Property }) {
     >
       <div className="h-full bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 border border-gray-100 flex flex-col">
         {/* Image Section */}
-        <div className="relative h-64 overflow-hidden">
+        <div className="relative h-64 overflow-hidden bg-gray-100">
           {/* Property Image */}
-          <img 
+          <Image 
             src={property.image} 
             alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover group-hover:scale-110 transition-transform duration-700"
+            priority={false}
           />
           
           {/* Gradient Overlay */}
