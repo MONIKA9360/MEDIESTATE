@@ -46,7 +46,7 @@ export default function AdminPage() {
   const [loanLeads, setLoanLeads] = useState<LoanLead[]>([])
   const [stats, setStats] = useState({ 
     totalContact: 0, totalLoan: 0, todayContact: 0, todayLoan: 0,
-    pendingLoan: 0, approvedLoan: 0, rejectedLoan: 0, underReviewLoan: 0
+    pendingContact: 0, pendingLoan: 0, approvedLoan: 0, rejectedLoan: 0, underReviewLoan: 0
   })
   const [searchTerm, setSearchTerm] = useState('')
   const [filterStatus, setFilterStatus] = useState('ALL')
@@ -93,11 +93,15 @@ export default function AdminPage() {
         const todayContactCount = contactData.leads?.filter((lead: Lead) => 
           new Date(lead.createdAt).toDateString() === today
         ).length || 0
+
+        // Count contact lead statuses
+        const pendingContactCount = contactData.leads?.filter((l: Lead) => l.status === 'PENDING').length || 0
         
         setStats(prev => ({ 
           ...prev, 
           totalContact: contactData.leads?.length || 0,
-          todayContact: todayContactCount
+          todayContact: todayContactCount,
+          pendingContact: pendingContactCount
         }))
       }
 
