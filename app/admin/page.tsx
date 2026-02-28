@@ -54,12 +54,10 @@ export default function AdminPage() {
   const [selectedLead, setSelectedLead] = useState<Lead | LoanLead | null>(null)
   const [showModal, setShowModal] = useState(false)
 
+  // Don't auto-login from session - always require login
   useEffect(() => {
-    const auth = sessionStorage.getItem('adminAuth')
-    if (auth === 'true') {
-      setIsAuthenticated(true)
-      fetchLeads()
-    }
+    // Clear any existing session on page load
+    sessionStorage.removeItem('adminAuth')
   }, [])
 
   const handleLogin = (e: React.FormEvent) => {
@@ -68,7 +66,6 @@ export default function AdminPage() {
     setError('')
 
     if (email === 'admin123@gmail.com' && password === 'admin123') {
-      sessionStorage.setItem('adminAuth', 'true')
       setIsAuthenticated(true)
       fetchLeads()
     } else {
@@ -78,6 +75,7 @@ export default function AdminPage() {
   }
 
   const handleLogout = () => {
+    sessionStorage.removeItem('adminAuth')
     sessionStorage.removeItem('adminAuth')
     setIsAuthenticated(false)
     setEmail('')
