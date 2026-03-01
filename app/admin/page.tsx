@@ -852,6 +852,8 @@ export default function AdminPage() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   href={`mailto:${selectedLead.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex-1 px-6 py-4 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all duration-300 text-center font-bold shadow-lg flex items-center justify-center"
                 >
                   <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
