@@ -369,8 +369,8 @@ export default function AdminPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           {[
             { label: 'Total Contact Leads', value: stats.totalContact, icon: '👥', color: 'emerald', iconBg: 'bg-emerald-50', iconColor: 'text-emerald-600', textColor: 'text-emerald-600', border: 'border-emerald-100' },
+            { label: 'Pending Inquiries', value: stats.pendingContact, icon: '⏳', color: 'yellow', iconBg: 'bg-yellow-50', iconColor: 'text-yellow-600', textColor: 'text-yellow-600', border: 'border-yellow-100' },
             { label: 'Total Loan Leads', value: stats.totalLoan, icon: '💰', color: 'blue', iconBg: 'bg-blue-50', iconColor: 'text-blue-600', textColor: 'text-blue-600', border: 'border-blue-100' },
-            { label: 'Pending Loans', value: stats.pendingLoan, icon: '⏳', color: 'yellow', iconBg: 'bg-yellow-50', iconColor: 'text-yellow-600', textColor: 'text-yellow-600', border: 'border-yellow-100' },
             { label: 'Approved Loans', value: stats.approvedLoan, icon: '✅', color: 'green', iconBg: 'bg-green-50', iconColor: 'text-green-600', textColor: 'text-green-600', border: 'border-green-100' },
           ].map((stat, index) => (
             <motion.div
