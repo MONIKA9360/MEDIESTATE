@@ -82,7 +82,7 @@ export default function Footer() {
         <div className="border-t border-white/10 mt-8 pt-8 text-center">
           <p className="text-gray-400 text-sm">&copy; 2026 Medi Estate. All rights reserved.</p>
           <p className="text-gray-400 text-sm mt-2">
-            Developed by <span className="font-bold text-purple-400">MONIKA M</span>
+            Developed by <a href="https://monika-777.netlify.app/" target="_blank" rel="noopener noreferrer" className="font-bold text-purple-400 hover:text-purple-300 transition-colors duration-300">MONIKA M</a>
           </p>
         </div>
       </div>

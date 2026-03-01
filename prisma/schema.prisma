@@ -15,12 +15,29 @@ model Lead {
   subject    String     @default("")
   message    String
   propertyId String?
+  propertyName String?
   status     LeadStatus @default(PENDING)
   priority   Priority   @default(MEDIUM)
   notes      String?
   assignedTo String?
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt
+}
+
+model Booking {
+  id            String        @id @default(uuid())
+  customerName  String
+  email         String
+  phone         String
+  propertyId    String?
+  propertyName  String
+  bookingAmount String?
+  totalAmount   String?
+  paymentStatus PaymentStatus @default(PENDING)
+  bookingStatus BookingStatus @default(BOOKED)
+  notes         String?
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model LoanLead {
@@ -46,6 +63,20 @@ enum LeadStatus {
   QUALIFIED
   CONVERTED
   REJECTED
+}
+
+enum BookingStatus {
+  BOOKED
+  APPROVED
+  COMPLETED
+  CANCELLED
+}
+
+enum PaymentStatus {
+  PENDING
+  PARTIAL
+  PAID
+  REFUNDED
 }
 
 enum LoanLeadStatus {
