@@ -101,7 +101,6 @@ export const properties: Property[] = [
     type: 'Estate',
     area: '5 Acres',
     image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    area: '5 Acres',
     description: 'Premium healthcare commercial estate ideal for multi-specialty hospital, medical college, or integrated wellness center development.',
     features: ['5 Acres', 'Medical Zoning', 'Metro Connectivity', 'High FSI'],
     details: {
