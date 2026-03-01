@@ -32,7 +32,7 @@ export default function Hero() {
           className="text-5xl md:text-7xl lg:text-8xl font-bold text-gray-900 mb-6 leading-tight"
         >
           Luxury Medical
-          <span className="block bg-gradient-to-r from-emerald-600 via-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <span className="block text-emerald-600">
             Land & Estates
           </span>
         </motion.h1>
@@ -54,7 +54,7 @@ export default function Hero() {
         >
           <Link
             href="/properties"
-            className="group px-8 py-4 bg-gradient-to-r from-emerald-600 to-blue-600 text-white font-semibold rounded-full shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center space-x-2"
+            className="group px-8 py-4 bg-gray-900 text-white font-semibold rounded-full shadow-lg hover:bg-gray-800 hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center space-x-2"
           >
             <span>Explore Properties</span>
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ export default function Hero() {
           
           <Link
             href="/contact"
-            className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border-2 border-gray-200 hover:border-emerald-500 hover:text-emerald-600 hover:scale-105 transition-all duration-300 shadow-lg"
+            className="px-8 py-4 bg-white text-gray-700 font-semibold rounded-full border-2 border-gray-200 hover:border-gray-900 hover:text-gray-900 hover:scale-105 transition-all duration-300 shadow-lg"
           >
             Contact Us
           </Link>
@@ -75,18 +75,18 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto"
+          className="mt-20 grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-4xl mx-auto"
         >
           {[
             { number: '₹500Cr+', label: 'Portfolio Value' },
             { number: '50+', label: 'Premium Properties' },
             { number: '100+', label: 'Happy Clients' },
           ].map((stat, index) => (
-            <div key={index} className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-gray-100">
-              <div className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-2">
+            <div key={index} className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow duration-300">
+              <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-3">
                 {stat.number}
               </div>
-              <div className="text-gray-600 text-sm">{stat.label}</div>
+              <div className="text-gray-600 text-base font-semibold">{stat.label}</div>
             </div>
           ))}
         </motion.div>
