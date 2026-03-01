@@ -46,7 +46,8 @@ export default function AdminPage() {
   const [loanLeads, setLoanLeads] = useState<LoanLead[]>([])
   const [stats, setStats] = useState({ 
     totalContact: 0, totalLoan: 0, todayContact: 0, todayLoan: 0,
-    pendingContact: 0, pendingLoan: 0, approvedLoan: 0, rejectedLoan: 0, underReviewLoan: 0
+    pendingContact: 0, contactedCount: 0, qualifiedCount: 0, convertedCount: 0, rejectedContact: 0,
+    pendingLoan: 0, approvedLoan: 0, rejectedLoan: 0, underReviewLoan: 0
   })
   const [searchTerm, setSearchTerm] = useState('')
   const [filterStatus, setFilterStatus] = useState('ALL')
@@ -96,12 +97,20 @@ export default function AdminPage() {
 
         // Count contact lead statuses
         const pendingContactCount = contactData.leads?.filter((l: Lead) => l.status === 'PENDING').length || 0
+        const contactedCount = contactData.leads?.filter((l: Lead) => l.status === 'CONTACTED').length || 0
+        const qualifiedCount = contactData.leads?.filter((l: Lead) => l.status === 'QUALIFIED').length || 0
+        const convertedCount = contactData.leads?.filter((l: Lead) => l.status === 'CONVERTED').length || 0
+        const rejectedContactCount = contactData.leads?.filter((l: Lead) => l.status === 'REJECTED').length || 0
         
         setStats(prev => ({ 
           ...prev, 
           totalContact: contactData.leads?.length || 0,
           todayContact: todayContactCount,
-          pendingContact: pendingContactCount
+          pendingContact: pendingContactCount,
+          contactedCount: contactedCount,
+          qualifiedCount: qualifiedCount,
+          convertedCount: convertedCount,
+          rejectedContact: rejectedContactCount
         }))
       }
 
@@ -399,7 +408,7 @@ export default function AdminPage() {
           ))}
         </div>
 
-        {/* Loan Status Overview Cards */}
+        {/* Contact Lead Status Overview Cards */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -407,10 +416,10 @@ export default function AdminPage() {
           className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-10"
         >
           {[
-            { label: 'Pending Review', value: stats.pendingLoan, bg: 'bg-white', border: 'border-yellow-200', text: 'text-yellow-600', iconBg: 'bg-yellow-50', icon: '⏰' },
-            { label: 'Under Review', value: stats.underReviewLoan, bg: 'bg-white', border: 'border-orange-200', text: 'text-orange-600', iconBg: 'bg-orange-50', icon: '🔍' },
-            { label: 'Approved', value: stats.approvedLoan, bg: 'bg-white', border: 'border-green-200', text: 'text-green-600', iconBg: 'bg-green-50', icon: '✓' },
-            { label: 'Rejected', value: stats.rejectedLoan, bg: 'bg-white', border: 'border-red-200', text: 'text-red-600', iconBg: 'bg-red-50', icon: '✗' },
+            { label: 'Pending', value: stats.pendingContact, bg: 'bg-white', border: 'border-yellow-200', text: 'text-yellow-600', iconBg: 'bg-yellow-50', icon: '⏰' },
+            { label: 'Contacted', value: stats.contactedCount, bg: 'bg-white', border: 'border-blue-200', text: 'text-blue-600', iconBg: 'bg-blue-50', icon: '📞' },
+            { label: 'Converted', value: stats.convertedCount, bg: 'bg-white', border: 'border-green-200', text: 'text-green-600', iconBg: 'bg-green-50', icon: '✓' },
+            { label: 'Rejected', value: stats.rejectedContact, bg: 'bg-white', border: 'border-red-200', text: 'text-red-600', iconBg: 'bg-red-50', icon: '✗' },
           ].map((item, index) => (
             <motion.div
               key={index}
